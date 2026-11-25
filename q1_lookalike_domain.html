@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>Look-Alike Domain Checker</title></head>
+<body>
+  <h2>Look-Alike Domain Detector</h2>
+  <input type="text" id="url" size="45" placeholder="e.g. http://paypa1-login.com or http://g00gle.com">
+  <button onclick="check()">Check Domain</button>
+  <p id="out"></p>
+
+  <script>
+    function check() {
+      var u = document.getElementById("url").value.toLowerCase();
+      var patterns = ["paypa1", "paypal-", "g00gle", "goog1e", "faceb00k", "amaz0n", "micr0soft"];
+      var found = patterns.some(p => u.includes(p));
+      var out = document.getElementById("out");
+      if (found) {
+        out.style.color = "red";
+        out.textContent = "WARNING: Possible look-alike phishing domain detected!";
+      } else {
+        out.style.color = "green";
+        out.textContent = "No common look-alike pattern detected.";
+      }
+    }
+  </script>
+</body>
+</html>
